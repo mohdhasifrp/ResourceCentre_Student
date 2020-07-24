@@ -49,9 +49,25 @@ public class ResourceCentreTest {
 		assertEquals("Test that Camcorder arraylist size is 2?", 2, camcorderList.size());
 	}
 	@Test
+//	DONE BY HASIF 
 	public void addChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
+		
+		// Item list is not null, so that can add a new item
+		assertNotNull("Test if there is valid Chromebook arraylist to add to", chromebookList);
+
+		// Given an empty list, after adding 1 item, the size of the list is 1
+		ResourceCentre.addChromebook(chromebookList, cb1);
+		assertEquals("Test if that Chromebook arraylist size is 1?", 1, chromebookList.size());
+
+		// The item just added is as same as the first item of the list
+		assertSame("Test that Chromebook is added same as 1st item of the list?", cb1, chromebookList.get(0));
+
+		// Add another item. test The size of the list is 2?
+		ResourceCentre.addChromebook(chromebookList, cb2);
+		assertEquals("Test that Chromebook arraylist size is 2?", 2, chromebookList.size());
+
 	}
 	
 	@Test
@@ -78,36 +94,91 @@ public class ResourceCentreTest {
 		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCamcorder);
 		
 	}
+	//DONE by HASIF
 	@Test
 	public void retrieveAllChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
+				assertNotNull("Test if there is valid Chromebook arraylist to add to", chromebookList);
+				
+				//test if the list of chromebook retrieved from the SourceCentre is empty
+						String allChromebook= ResourceCentre.retrieveAllChromebook(chromebookList);
+						String testOutput = "";
+						
+						
+				//Given an empty list, after adding 2 items, test if the size of the list is 2
+				ResourceCentre.addChromebook(chromebookList, cb1);
+				ResourceCentre.addChromebook(chromebookList, cb2);
+				
+				
+				//test if the expected output string same as the list of chromebook retrieved from the SourceCentre
+				allChromebook= ResourceCentre.retrieveAllChromebook(chromebookList);
+
+				testOutput = String.format("%-10s %-30s %-10s %-10s %-20s\n","CB0011", "My Google Chromebook 1st","","", "Mac OS");
+				testOutput += String.format("%-10s %-30s %-10s %-10s %-20s\n","CB0012", "SAMSUNG Chromebook 4+","","", "Win 10");
+			
+				
 	}
 
 	@Test
+	//Done By HASIF 
 	public void doLoanCamcorderTest() {
 		//fail("Not yet implemented");
 		// write your code here
-		
+		//Test if there is valid Camcorder arraylist to loan from
+				assertNotNull("Test if there is valid Camcorder arraylist to loan from", camcorderList);
+				
+				
 	}
 	
 	@Test
+	//
 	public void doLoanChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
+		//Test if there is valid Chromebook arraylist to loan from
+				assertNotNull("Test if there is valid Chromebook arraylist to loan from", chromebookList);
+	
+		
 	}
 	
 	@Test
+	//Done by AISYAH 
 	public void doReturnCamcorderTest() {
 		//fail("Not yet implemented");
 		// write your code here
+		ResourceCentre.addCamcorder(camcorderList, cc1);
+		//Test if there is valid Camcorder arraylist to return to
+		assertNotNull("Test if there is valid camcorder arraylist to loan from", camcorderList);
+		//Check that available Camcorder CC0011 is returned - False (not return yet)
+		Boolean isReturned = ResourceCentre.doReturnCamcorder(camcorderList, "CB0011");
+		assertFalse("Is available Chromebook CB0011 returned (false)?", isReturned);
 		
 	}
+	
+	
+	//DONE BY AISYAH 
 	@Test
 	public void doReturnChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
-	}
+		
+		//Let's load the list!!
+		assertNotNull("Is the list of Chromebooks available?", chromebookList);
+		ResourceCentre.addChromebook(chromebookList, cb1);
+		ResourceCentre.addChromebook(chromebookList, cb2);
+						
+		//Error Condition
+		Boolean isReturned = ResourceCentre.doReturnChromebook(chromebookList, "CB0011");
+		assertFalse("Is available Chromebook CB0011 returned (false)?", isReturned);
+						
+		//Normal Condition
+		cb2.setIsAvailable(false);
+		isReturned = ResourceCentre.doReturnChromebook(chromebookList, "CB0012");
+		assertTrue("Is borrowed Chromebook CB0012 returned (true)?", isReturned);
+						
+			}
+
 	
 	@After
 	public void tearDown() throws Exception {
