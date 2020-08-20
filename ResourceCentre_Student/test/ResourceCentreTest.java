@@ -49,7 +49,7 @@ public class ResourceCentreTest {
 		assertEquals("Test that Camcorder arraylist size is 2?", 2, camcorderList.size());
 	}
 	@Test
-//	DONE BY HASIF 
+//	 HASIF ALI
 	public void addChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
@@ -94,7 +94,7 @@ public class ResourceCentreTest {
 		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCamcorder);
 		
 	}
-	//DONE by HASIF
+	// HASIF ALI 
 	@Test
 	public void retrieveAllChromebookTest() {
 		//fail("Not yet implemented");
@@ -102,9 +102,9 @@ public class ResourceCentreTest {
 				assertNotNull("Test if there is valid Chromebook arraylist to add to", chromebookList);
 				
 				//test if the list of chromebook retrieved from the SourceCentre is empty
-						String allChromebook= ResourceCentre.retrieveAllChromebook(chromebookList);
-						String testOutput = "";
-						
+				String allChromebook= ResourceCentre.retrieveAllChromebook(chromebookList);
+				String testOutput = "";
+				assertEquals("Check that ViewAllChromebooklist", testOutput, allChromebook);		
 						
 				//Given an empty list, after adding 2 items, test if the size of the list is 2
 				ResourceCentre.addChromebook(chromebookList, cb1);
@@ -121,7 +121,7 @@ public class ResourceCentreTest {
 	}
 
 	@Test
-	//Done By HASIF 
+	//
 	public void doLoanCamcorderTest() {
 		//fail("Not yet implemented");
 		// write your code here
